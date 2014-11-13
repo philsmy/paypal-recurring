@@ -21,6 +21,7 @@ describe PayPal::Recurring::Response::Profile do
     its(:remaining) { should == "0" }
     its(:outstanding_balance) { should == "0.00" }
     its(:failed_count) { should == "0" }
+    its(:next_payment_date) { should be_a(Time) }
     its(:last_payment_date) { should be_a(Time) }
     its(:last_payment_amount) { should == "9.00" }
     its(:period) { should == :monthly }

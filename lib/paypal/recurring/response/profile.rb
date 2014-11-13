@@ -15,6 +15,7 @@ module PayPal
           :remaining           => :NUMCYCLESREMAINING,
           :outstanding_balance => :OUTSTANDINGBALANCE,
           :failed_count        => :FAILEDPAYMENTCOUNT,
+          :next_payment_date   => :NEXTBILLINGDATE,
           :last_payment_date   => :LASTPAYMENTDATE,
           :last_payment_amount => :LASTPAYMENTAMT,
           :period              => :BILLINGPERIOD,
@@ -65,6 +66,7 @@ module PayPal
 
         alias_method :build_start_at, :build_date
         alias_method :build_last_payment_date, :build_date
+        alias_method :build_next_payment_date, :build_date
       end
     end
   end
