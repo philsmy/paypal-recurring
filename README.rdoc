@@ -6,6 +6,10 @@ PayPal Express Checkout API Client for recurring billing.
 
   gem install paypal-recurring
 
+or with bundler:
+
+  gem 'paypal-recurring', :github => 'fnando/paypal-recurring'
+
 == Usage
 
 First, you need to set up your credentials:
@@ -112,10 +116,11 @@ You can manage your recurring profile.
 === What information do I need to keep?
 
 You should save two paramaters to your database: <tt>TOKEN</tt> and <tt>PROFILEID</tt>.
+
 <tt>TOKEN</tt> is required when user returns to your website after he authorizes (or not) the billing process. You
 need to save it so you can find him later. You can remove this info after payment and recurring profile are set.
 
-The <tt>PROFILEID</tt> allows you to manage the recurring profile, like cancelling billing when an user don't
+The <tt>PROFILEID</tt> allows you to manage the recurring profile, like canceling billing when an user don't
 want to use your service anymore.
 
 <b>NOTE:</b> TOKEN will expire after approximately 3 hours.
