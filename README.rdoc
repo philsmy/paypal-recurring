@@ -27,7 +27,10 @@ Then, you can request a new payment authorization:
     :ipn_url      => "http://example.com/paypal/ipn",
     :description  => "Awesome - Monthly Subscription",
     :amount       => "9.00",
-    :currency     => "USD"
+    :currency     => "USD",
+    :bg_color     => "#EFC687", # custom background color (optional)
+    :brand_name   => "My Store title!", # custom store title (optional)
+    :logo         => "http://#{your_host}/images/logo.png") # custom logo (optional, overrides brand name)
   })
 
   response = ppr.checkout

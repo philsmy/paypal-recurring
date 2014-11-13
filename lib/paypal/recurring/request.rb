@@ -87,6 +87,9 @@ module PayPal
         :trial_frequency       => "TRIALBILLINGFREQUENCY",
         :trial_length          => "TRIALTOTALBILLINGCYCLES",
         :trial_period          => "TRIALBILLINGPERIOD",
+        :logo                  => "HDRIMG",
+        :bg_color              => "HDRBACKCOLOR",
+        :border_color          => "HDRBORDERCOLOR",
         :username              => "USER",
         :version               => "VERSION"
       }

@@ -132,5 +132,17 @@ describe PayPal::Recurring::Request do
     it "normalizes locale" do
       subject.normalize_params(:locale => :us).should == {:LOCALECODE => "US"}
     end
+
+    it "normalizes bg color" do
+      subject.normalize_params(:bg_color => "#FFF").should == {:HDRBACKCOLOR => "#FFF"}
+    end
+
+    it "normalizes border color" do
+      subject.normalize_params(:border_color => "#FFF").should == {:HDRBORDERCOLOR => "#FFF"}
+    end
+
+    it "normalizes logo" do
+      subject.normalize_params(:logo => "http://img.shields.io/badge/ima-logo-brightgreen.svg").should == { :HDRIMG => "http://img.shields.io/badge/ima-logo-brightgreen.svg" }
+    end
   end
 end

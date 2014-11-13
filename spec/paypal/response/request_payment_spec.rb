@@ -11,6 +11,8 @@ describe PayPal::Recurring::Response::Payment do
         :currency    => "BRL",
         :payer_id    => "D2U7M6PTMJBML",
         :token       => "EC-7DE19186NP195863W",
+        :logo        => "http://img.shields.io/badge/ima-logo-brightgreen.svg",
+        :bg_color    => "#FFF"
       })
       ppr.request_payment
     }
