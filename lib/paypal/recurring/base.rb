@@ -270,6 +270,16 @@ module PayPal
         request.run(:refund, params)
       end
 
+      # Retrieve the details of a transaction.
+      #   ppr = PayPal::Recurring.new({
+      #     :transaction_id => "ABCEDFGH",
+      #   })
+      #   response = ppr.transaction_details
+      #
+      def transaction_details
+        request.run(:transaction, :transaction_id => transaction_id)
+      end
+
       private
       # Collect specified attributes and build a hash out of it.
       #
