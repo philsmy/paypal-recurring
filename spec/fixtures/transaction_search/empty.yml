@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api-3t.sandbox.paypal.com/nvp
+    body:
+      encoding: US-ASCII
+      string: USER=fnando.vieira%2Bseller_api1.gmail.com&PWD=PRTZZX6JDACB95SA&SIGNATURE=AJnjtLN0ozBP-BF2ZJrj5sfbmGAxAnf5tev1-MgK5Z8IASmtj-Fw.5pt&VERSION=72.0&STARTDATE=2015-01-1T05%3A38%3A48Z&METHOD=TransactionSearch
+    headers:
+      accept:
+      - ! '*/*'
+      user-agent:
+      - PayPal::Recurring/1.1.0
+      content-type:
+      - application/x-www-form-urlencoded
+      connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - Apache
+      content-length:
+      - '107'
+      content-type:
+      - text/plain; charset=utf-8
+      dc:
+      - origin1-api-3t.sandbox.paypal.com
+      date:
+      - Mon, 17 Mar 2014 12:12:13 GMT
+      connection:
+      - close
+      set-cookie:
+      - DC=origin1-api-3t.sandbox.paypal.com; secure
+    body:
+      encoding: US-ASCII
+      string: TIMESTAMP=2014%2d03%2d17T12%3a12%3a13Z&CORRELATIONID=17e65c8074fa8&ACK=Success&VERSION=72%2e0&BUILD=9915774
+    http_version: '1.1'
+  recorded_at: Mon, 17 Mar 2014 12:13:42 GMT
+recorded_with: VCR 2.1.0

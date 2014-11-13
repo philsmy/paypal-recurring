@@ -9,17 +9,19 @@ module PayPal
       autoload :Profile, "paypal/recurring/response/profile"
       autoload :Refund,  "paypal/recurring/response/refund"
       autoload :Transaction, "paypal/recurring/response/transaction"
+      autoload :TransactionSearch, "paypal/recurring/response/transaction_search"
 
       RESPONDERS = {
-        :checkout       => "Checkout",
-        :details        => "Details",
-        :payment        => "Payment",
-        :profile        => "Profile",
-        :create_profile => "ManageProfile",
-        :manage_profile => "ManageProfile",
-        :update_profile => "ManageProfile",
-        :refund         => "Refund",
-        :transaction    => "Transaction"
+        :checkout           => "Checkout",
+        :details            => "Details",
+        :payment            => "Payment",
+        :profile            => "Profile",
+        :create_profile     => "ManageProfile",
+        :manage_profile     => "ManageProfile",
+        :update_profile     => "ManageProfile",
+        :refund             => "Refund",
+        :transaction        => "Transaction",
+        :transaction_search => "TransactionSearch"
       }
 
       def self.process(method, response)

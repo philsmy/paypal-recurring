@@ -34,6 +34,9 @@ module PayPal
       attr_accessor :bg_color
       attr_accessor :border_color
       attr_accessor :logo
+      attr_accessor :end_date
+      attr_accessor :start_date
+      attr_accessor :status
 
       def initialize(options = {})
         options.each {|name, value| send("#{name}=", value)}
@@ -278,6 +281,27 @@ module PayPal
       #
       def transaction_details
         request.run(:transaction, :transaction_id => transaction_id)
+      end
+
+      # Search for transactions
+      #   ppr = PayPal::Recurring.new({
+      #     :profile_id => "ABCDEFGH"
+      #   })
+      #   response = ppr.transaction_search
+      #
+      def transaction_search
+        params = collect(
+          :start_date,
+          :end_date,
+          :transaction_id,
+          :reference,
+          :amount,
+          :currency,
+          :status,
+          :profile_id
+        )
+
+        request.run(:transaction_search, params)
       end
 
       private

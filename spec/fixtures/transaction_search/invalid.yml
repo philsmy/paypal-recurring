@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api-3t.sandbox.paypal.com/nvp
+    body:
+      encoding: US-ASCII
+      string: USER=fnando.vieira%2Bseller_api1.gmail.com&PWD=PRTZZX6JDACB95SA&SIGNATURE=AJnjtLN0ozBP-BF2ZJrj5sfbmGAxAnf5tev1-MgK5Z8IASmtj-Fw.5pt&VERSION=72.0&METHOD=TransactionSearch
+    headers:
+      accept:
+      - ! '*/*'
+      user-agent:
+      - PayPal::Recurring/1.1.0
+      content-type:
+      - application/x-www-form-urlencoded
+      connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - Apache
+      content-length:
+      - '347'
+      content-type:
+      - text/plain; charset=utf-8
+      dc:
+      - origin2-api-3t.sandbox.paypal.com
+      date:
+      - Mon, 17 Mar 2014 12:08:36 GMT
+      connection:
+      - close
+      set-cookie:
+      - DC=origin2-api-3t.sandbox.paypal.com; secure
+    body:
+      encoding: US-ASCII
+      string: TIMESTAMP=2014%2d03%2d17T12%3a08%3a36Z&CORRELATIONID=63535d3edc586&ACK=Failure&VERSION=72%2e0&BUILD=9915774&L_ERRORCODE0=10003&L_SHORTMESSAGE0=Transaction%20refused%20because%20of%20an%20invalid%20argument%2e%20See%20additional%20error%20messages%20for%20details%2e&L_LONGMESSAGE0=Start%20date%20is%20a%20required%20parameter&L_SEVERITYCODE0=Error
+    http_version: '1.1'
+  recorded_at: Mon, 17 Mar 2014 12:10:05 GMT
+recorded_with: VCR 2.1.0
