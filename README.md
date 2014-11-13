@@ -1,30 +1,37 @@
-= PayPal Recurring Billing
+# PayPal Recurring Billing
 
-PayPal Express Checkout API Client for recurring billing.
+Nando Vieira's PayPal Express Checkout API Client for recurring billing, with some improvements.
 
-== Installation
+[![Build Status](http://img.shields.io/travis/t-bullock/paypal-recurring.svg?style=flat-square)](https://travis-ci.org/t-bullock/paypal-recurring)
 
-  gem install paypal-recurring
+## Installation
 
-or with bundler:
+  ```
+  $ gem install paypal-recurring
+  ```
 
-  gem 'paypal-recurring', :github => 'fnando/paypal-recurring'
+If you're using bundler, add this to your gemfile instead.
 
-== Usage
+  ```ruby
+  gem 'paypal-recurring', :github => 't-bullock/paypal-recurring'
+  ```
 
-First, you need to set up your credentials:
+## Usage
 
-  require "paypal/recurring"
+First you need to set up your credentials. Create a file `config/initializers/paypal.rb` and add the following with your own credentials from PayPal.
 
+  ```ruby
   PayPal::Recurring.configure do |config|
     config.sandbox = true
     config.username = "seller_1308793919_biz_api1.simplesideias.com.br"
     config.password = "1308793931"
     config.signature = "AFcWxV21C7fd0v3bYYYRCpSSRl31AzaB6TzXx5amObyEghjU13.0av2Y"
   end
+  ```
 
-Then, you can request a new payment authorization:
+Now you can request a new payment authorization.
 
+  ```ruby
   ppr = PayPal::Recurring.new({
     :return_url   => "http://example.com/paypal/thank_you",
     :cancel_url   => "http://example.com/paypal/canceled",
@@ -40,53 +47,37 @@ Then, you can request a new payment authorization:
 
   response = ppr.checkout
   puts response.checkout_url if response.valid?
+  ```
 
-You need to redirect your user to the url returned by <tt>response.checkout_url</tt>.
-After the user accepts or rejects your payment request, he will be redirected to one of those urls you specified.
-The return url will receive two parameters: <tt>PAYERID</tt> and <tt>TOKEN</tt>. You can use the <tt>TOKEN</tt>
-parameter to identify your user on your database.
+You need to redirect your user to the url returned by `response.checkout_url`.
+After the user accepts or rejects your payment request, he/she will be redirected to one of those urls you specified.
+The return url will receive two parameters: `PAYERID` and `TOKEN`. You can use the `TOKEN` parameter to identify your user in your database.
 
-If you need to retrieve information about your buyer, like address or e-mail, you can use the
-<tt>checkout_details()</tt> method.
+If you need to retrieve information about your buyer (like address or e-mail), you can use the `checkout_details()` method.
 
+  ```ruby
   ppr = PayPal::Recurring.new(:token => "EC-05C46042TU8306821")
   response = ppr.checkout_details
+  ```
 
-Now, you need to request payment. The information you provide here should be exactly the same when you started
-the checkout process.
+Now you need to request payment. The information you provide here should be exactly the same as when you started the checkout process.
 
+  ```ruby
   ppr = PayPal::Recurring.new({
     :token       => "EC-05C46042TU8306821",
     :payer_id    => "WTTS5KC2T46YU",
     :amount      => "9.00",
     :description => "Awesome - Monthly Subscription"
   })
+
   response = ppr.request_payment
   response.approved?
   response.completed?
+  ```
 
 Finally, you need to create a new recurring profile.
 
-  ppr = PayPal::Recurring.new({
-    :amount      => "9.00",
-    :currency    => "USD",
-    :description => "Awesome - Monthly Subscription",
-    :ipn_url     => "http://example.com/paypal/ipn",
-    :frequency   => 1,
-    :token       => "EC-05C46042TU8306821",
-    :period      => :monthly,
-    :reference   => "1234",
-    :payer_id    => "WTTS5KC2T46YU",
-    :start_at    => Time.now,
-    :failed      => 1,
-    :outstanding => :next_billing
-  })
-
-  response = ppr.create_recurring_profile
-  puts response.profile_id
-
-(Optionally) You can specify a trial period, frequency, and length.
-
+  ```ruby
   ppr = PayPal::Recurring.new({
     :amount          => "9.00",
     :currency        => "USD",
@@ -100,36 +91,62 @@ Finally, you need to create a new recurring profile.
     :start_at        => Time.now,
     :failed          => 1,
     :outstanding     => :next_billing,
+    :billing_cycles  => 0 # Number of billing cycles you want this subscription to run for. '0' runs forever
+  })
+
+  response = ppr.create_recurring_profile
+  puts response.profile_id
+  ```
+
+Optionally you can also specify a trial period, frequency, and length.
+
+  ```ruby
+  ppr = PayPal::Recurring.new({
+    :amount          => "9.00",
+    :currency        => "USD",
+    :description     => "Awesome - Monthly Subscription",
+    :ipn_url         => "http://example.com/paypal/ipn",
+    :frequency       => 1,
+    :token           => "EC-05C46042TU8306821",
+    :period          => :monthly,
+    :reference       => "1234",
+    :payer_id        => "WTTS5KC2T46YU",
+    :start_at        => Time.now,
+    :failed          => 1,
+    :outstanding     => :next_billing,
+    :billing_cycles  => 0,
     :trial_length    => 1,
     :trial_period    => :monthly,
     :trial_frequency => 1
   })
+  ```
 
 You can manage your recurring profile.
 
+  ```ruby
   ppr = PayPal::Recurring.new(:profile_id => "I-VCEL6TRG35CU")
 
   ppr.suspend
   ppr.reactivate
   ppr.cancel
+  ```
 
-=== What information do I need to keep?
+### What information do I need to keep?
 
-You should save two paramaters to your database: <tt>TOKEN</tt> and <tt>PROFILEID</tt>.
+You should save two paramaters to your database: `TOKEN` and `PROFILEID`.
 
-<tt>TOKEN</tt> is required when user returns to your website after he authorizes (or not) the billing process. You
-need to save it so you can find him later. You can remove this info after payment and recurring profile are set.
+`TOKEN` is required when user returns to your website after he/she authorizes (or cancels) the billing process. You need to save it so you can find the user later. You can remove this info after the payment and recurring profile are set.
 
-The <tt>PROFILEID</tt> allows you to manage the recurring profile, like canceling billing when an user don't
+The `PROFILEID` allows you to manage the recurring profile, like canceling billing when a user doesn't
 want to use your service anymore.
 
-<b>NOTE:</b> TOKEN will expire after approximately 3 hours.
+**NOTE:** `TOKEN` will expire after approximately 3 hours.
 
-== Maintainer
+## Maintainer
 
 * Nando Vieira (http://nandovieira.com.br)
 
-== License
+## License
 
 (The MIT License)
 
