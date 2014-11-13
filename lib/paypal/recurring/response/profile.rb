@@ -37,7 +37,7 @@ module PayPal
 
         PERIOD = {
           "Month"  => :monthly,
-          "Weekly" => :weekly,
+          "Week"   => :weekly,
           "Year"   => :yearly,
           "Day"    => :daily
         }

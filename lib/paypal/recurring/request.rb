@@ -25,14 +25,14 @@ module PayPal
 
       PERIOD = {
         :daily   => "Day",
-        :weekly  => "Weekly",
+        :weekly  => "Week",
         :monthly => "Month",
         :yearly  => "Year"
       }
 
       TRIAL_PERIOD = {
         :daily    => "Day",
-        :weekly   => "Weekly",
+        :weekly   => "Week",
         :monthly  => "Month",
         :yearly   => "Year"
       }
