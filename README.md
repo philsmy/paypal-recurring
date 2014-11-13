@@ -121,7 +121,7 @@ Optionally you can also specify a trial period, frequency, and length.
   })
   ```
 
-You can manage your recurring profile.
+You can manage your recurring profile like this.
 
   ```ruby
   ppr = PayPal::Recurring.new(:profile_id => "I-VCEL6TRG35CU")
@@ -129,6 +129,21 @@ You can manage your recurring profile.
   ppr.suspend
   ppr.reactivate
   ppr.cancel
+  ```
+
+Or offer refunds.
+
+  ```ruby
+  ppr = PayPal::Recurring.new({
+    :profile_id     => "I-VCEL6TRG35CU",
+    :transaction_id => "ABCEDFGH",
+    :reference      => "1234",
+    :refund_type    => :partial,
+    :amount         => "9.00",
+    :currency       => "USD"
+  })
+
+  response = ppr.refund
   ```
 
 ### What information do I need to keep?
