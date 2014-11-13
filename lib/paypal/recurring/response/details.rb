@@ -5,7 +5,6 @@ module PayPal
         mapping(
           :status       => :CHECKOUTSTATUS,
           :email        => :EMAIL,
-          :email        => :EMAIL,
           :payer_id     => :PAYERID,
           :payer_status => :PAYERSTATUS,
           :first_name   => :FIRSTNAME,
