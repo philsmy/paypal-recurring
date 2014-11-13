@@ -21,6 +21,7 @@ module PayPal
       attr_accessor :refund_type
       attr_accessor :return_url
       attr_accessor :start_at
+      attr_accessor :billing_cycles
       attr_accessor :token
       attr_accessor :transaction_id
       attr_accessor :item_category
@@ -173,7 +174,8 @@ module PayPal
       #     :trial_period          => :monthly,
       #     :trial_length          => 1,
       #     :trial_frequency       => 1,
-      #     :trial_amount          => 0.00
+      #     :trial_amount          => 0.00,
+      #     :billing_cycles        => 1
       #   })
       #
       #   response = ppr.create_recurring_profile
@@ -202,7 +204,8 @@ module PayPal
           :item_category,
           :item_name,
           :item_amount,
-          :item_quantity
+          :item_quantity,
+          :billing_cycles
         )
         request.run(:create_profile, params)
       end

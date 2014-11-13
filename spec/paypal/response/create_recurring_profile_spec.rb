@@ -19,7 +19,8 @@ describe PayPal::Recurring::Response::Profile do
         :payer_id              => "D2U7M6PTMJBML",
         :start_at              => Time.now,
         :failed                => 1,
-        :outstanding           => :next_billing
+        :outstanding           => :next_billing,
+        :billing_cycles        => 1
       })
       ppr.create_recurring_profile
     }

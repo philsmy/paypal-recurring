@@ -55,6 +55,7 @@ module PayPal
         :action                => "ACTION",
         :amount                => ["PAYMENTREQUEST_0_AMT", "AMT"],
         :billing_type          => "L_BILLINGTYPE0",
+        :billing_cycles        => "TOTALBILLINGCYCLES",
         :cancel_url            => "CANCELURL",
         :currency              => ["PAYMENTREQUEST_0_CURRENCYCODE", "CURRENCYCODE"],
         :description           => ["DESC", "PAYMENTREQUEST_0_DESC", "L_BILLINGAGREEMENTDESCRIPTION0"],

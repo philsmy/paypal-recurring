@@ -133,6 +133,10 @@ describe PayPal::Recurring::Request do
       subject.normalize_params(:locale => :us).should == {:LOCALECODE => "US"}
     end
 
+    it "normalizes billing cycles" do
+      subject.normalize_params(:billing_cycles => 1).should == {:TOTALBILLINGCYCLES => 1}
+    end
+
     it "normalizes bg color" do
       subject.normalize_params(:bg_color => "#FFF").should == {:HDRBACKCOLOR => "#FFF"}
     end
