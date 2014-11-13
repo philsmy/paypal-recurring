@@ -31,8 +31,9 @@ module PayPal
       attr_accessor :trial_length
       attr_accessor :trial_period
       attr_accessor :trial_amount
-      attr_accessor :logo
       attr_accessor :bg_color
+      attr_accessor :border_color
+      attr_accessor :logo
 
       def initialize(options = {})
         options.each {|name, value| send("#{name}=", value)}

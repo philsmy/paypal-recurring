@@ -138,7 +138,7 @@ describe PayPal::Recurring::Request do
     end
 
     it "normalizes border color" do
-      subject.normalize_params(:border_color => "#FFF").should == {:HDRBORDERCOLOR => "#FFF"}
+      subject.normalize_params(:border_color => "#3F3F3F").should == {:HDRBORDERCOLOR => "#3F3F3F"}
     end
 
     it "normalizes logo" do

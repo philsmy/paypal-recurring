@@ -6,13 +6,14 @@ describe PayPal::Recurring::Response::Payment do
 
     subject {
       ppr = PayPal::Recurring.new({
-        :description => "Awesome - Monthly Subscription",
-        :amount      => "9.00",
-        :currency    => "BRL",
-        :payer_id    => "D2U7M6PTMJBML",
-        :token       => "EC-7DE19186NP195863W",
-        :logo        => "http://img.shields.io/badge/ima-logo-brightgreen.svg",
-        :bg_color    => "#FFF"
+        :description  => "Awesome - Monthly Subscription",
+        :amount       => "9.00",
+        :currency     => "BRL",
+        :payer_id     => "D2U7M6PTMJBML",
+        :token        => "EC-7DE19186NP195863W",
+        :bg_color     => "#FFF",
+        :border_color => "#3F3F3F",
+        :logo         => "http://img.shields.io/badge/ima-logo-brightgreen.svg"
       })
       ppr.request_payment
     }

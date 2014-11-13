@@ -29,6 +29,7 @@ Then, you can request a new payment authorization:
     :amount       => "9.00",
     :currency     => "USD",
     :bg_color     => "#EFC687", # custom background color (optional)
+    :border_color => "#3F3F3F", # custom border color (optional)
     :brand_name   => "My Store title!", # custom store title (optional)
     :logo         => "http://#{your_host}/images/logo.png") # custom logo (optional, overrides brand name)
   })
