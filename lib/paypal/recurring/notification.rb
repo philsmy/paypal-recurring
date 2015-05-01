@@ -21,7 +21,8 @@ module PayPal
         :seller_id        => :receiver_id,
         :email            => :receiver_email,
         :initial_amount   => :initial_payment_amount,
-        :payer_email      => :payer_email
+        :payer_email      => :payer_email,
+        :payed_id         => :payer_id
       })
 
       def initialize(params = {})
@@ -94,6 +95,10 @@ module PayPal
 
       def verified?
         response.body == "VERIFIED"
+      end
+      
+      def payer_id
+        params[:payer_id]
       end
     end
   end
